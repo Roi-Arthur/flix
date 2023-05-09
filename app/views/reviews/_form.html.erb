@@ -1,0 +1,21 @@
+<%= form_with(model: [movie, review]) do |f| %>
+
+  <%= render "shared/errors", object: review %>
+
+  <%= f.label :stars %>
+
+  <% Review::STARS.each do |star| %>
+    <span class="star">
+        <%= f.radio_button :stars, star %>
+        <%= label_tag star %>
+        <%= comment do %> <%= render "shared/stars", percent: star/5.0*100 %> <% end %>
+    </span>
+  <% end %>
+
+
+
+  <%= f.label :comment %>
+  <%= f.text_area :comment, placeholder: "What did you think?" %>
+
+  <%= f.submit "Post Review" %>
+<% end %>
